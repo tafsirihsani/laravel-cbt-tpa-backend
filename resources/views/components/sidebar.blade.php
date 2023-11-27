@@ -34,5 +34,17 @@
 
                 </ul>
             </li>
+
+            <li class="nav-item dropdown">
+                <a href="#"U
+                    class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Soal</span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="nav-link"
+                            href="{{ route('soal.index') }}">All Soal</a>
+                    </li>
+
+                </ul>
+            </li>
     </aside>
 </div>
