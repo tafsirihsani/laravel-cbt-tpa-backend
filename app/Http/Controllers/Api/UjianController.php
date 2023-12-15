@@ -105,12 +105,9 @@ class UjianController extends Controller
             ], 200);
         }
         $ujianSoalList = UjianSoalList::where('ujian_id', $ujian->id)->get();
-        $ujianSoalListId = [];
-        foreach ($ujianSoalList as $soal) {
-            array_push($ujianSoalListId, $soal->soal_id);
-        }
+        $soalIds = $ujianSoalList->pluck('soal_id');
 
-        $soal = Soal::whereIn('id', $ujianSoalListId)->where('kategori', $request->kategori)->get();
+        $soal = Soal::whereIn('id', $soalIds)->where('kategori', $request->kategori)->get();
 
         return response()->json([
             'message' => 'Berhasil mendapatkan soal',
