@@ -98,6 +98,12 @@ class UjianController extends Controller
     public function getListSoalByKategori(Request $request)
     {
         $ujian = Ujian::where('user_id', $request->user()->id)->first();
+        if (!$ujian) {
+            return response()->json([
+                'message' => 'Ujian tidak ditemukan',
+                'data' => [],
+            ], 200);
+        }
         $ujianSoalList = UjianSoalList::where('ujian_id', $ujian->id)->get();
         $ujianSoalListId = [];
         foreach ($ujianSoalList as $soal) {
@@ -146,6 +152,12 @@ class UjianController extends Controller
     {
         $kategori = $request->kategori;
         $ujian = Ujian::where('user_id', $request->user()->id)->first();
+        if (!$ujian) {
+            return response()->json([
+                'message' => 'Ujian tidak ditemukan',
+                'data' => [],
+            ], 200);
+        }
         $ujianSoalList = UjianSoalList::where('ujian_id', $ujian->id)->get();
         //ujiansoallist by kategori
         $ujianSoalList = $ujianSoalList->filter(function ($value, $key) use ($kategori) {
