@@ -209,6 +209,13 @@ class UjianController extends Controller
 
         dd($ujian);
 
+        //update nilai, status, timer
+        $ujian->update([
+            $kategori_field => $nilai,
+            $status_field => 'done',
+            $timer_field => 0,
+        ]);
+
         return response()->json([
             'message' => 'Berhasil mendapatkan nilai',
             'nilai' => $nilai,
